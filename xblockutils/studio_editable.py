@@ -72,7 +72,7 @@ class StudioEditableXBlockMixin(object):
     """
     editable_fields = ()  # Set this to a list of the names of fields to appear in the editor
 
-    def studio_view(self, context, override=none):
+    def studio_view(self, context, override=None):
         """
         Render a form for editing this XBlock
         """
