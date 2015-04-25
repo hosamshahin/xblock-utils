@@ -72,7 +72,7 @@ class StudioEditableXBlockMixin(object):
     """
     editable_fields = ()  # Set this to a list of the names of fields to appear in the editor
 
-    def studio_view(self, context):
+    def studio_view(self, context, override=none):
         """
         Render a form for editing this XBlock
         """
@@ -91,7 +91,10 @@ class StudioEditableXBlockMixin(object):
                 context["fields"].append(field_info)
         fragment.content = loader.render_template('templates/studio_edit.html', context)
         fragment.add_javascript(loader.load_unicode('public/studio_edit.js'))
-        fragment.initialize_js('StudioEditableXBlockMixin')
+        # When ovveride is True that means the child class will call 
+        # function StudioEditableXBlockMixin his client side JavaScript 
+        if override is None:
+            fragment.initialize_js('StudioEditableXBlockMixin')
         return fragment
 
     def _make_field_info(self, field_name, field):
